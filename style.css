@@ -1,0 +1,121 @@
+*{
+    margin: 0; padding:0; box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.site-header {
+    width: 100%;
+    height: 100vh;
+    background: #06283D;
+    
+}
+
+
+nav{
+    display: flex; /* 1 */
+    justify-content: space-between; /* 2 */
+    padding: 0.1rem 1rem; /* 3 */
+    background: #cfd8dc;
+    height: 80px;
+    font-size: 1.6rem;
+
+
+    
+}
+
+nav ul {
+    display: flex; /* 5 */
+    list-style: none; /* 6 */
+  }
+  
+  nav li {
+    padding-left: 1rem; /* 7! */
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #0d47a1
+  }
+
+    
+
+.logo{
+    width:50%;
+    height: 100px;
+    border-radius: 10;
+}
+
+.logo h1{
+    line-height: 100px;
+    padding-left: 50px;
+    
+}
+
+.menu{
+    width: 50%; height: 100px;
+}
+
+.menu ul{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:  center;
+}
+
+.menu ul li{
+    list-style: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+section{ display: flex;  }
+
+.leftside { width: 60%; height: auto; overflow: hidden; margin-top: 20px;}
+
+.leftside img{  margin-top: 80px; padding-left: 50px; width: 600px;  height: 400px; border-radius: 50%;  }
+
+.rightside{ width:40%; height: 300px; color: white; text-align: center; margin-top: 80px; padding: 40px;}
+
+.rightside h1{ text-align: center;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+margin-top: 150px; } 
+
+
+.rightside p {  
+    font-size: 1.2rem; padding: 30px 0; }
+
+.rightside button{   
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 14px 24px;
+    border: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    color: #fff;
+
+    
+
+}
+
+
+
+
+
+.rightside button:hover{
+      background: linear-gradient(57deg,#8cc2ed,#46a5f2, );   
+}
+
+h1{
+    text-decoration-color: #06283D;
+}
