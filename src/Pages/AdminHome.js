@@ -1,10 +1,11 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import AdminSidebar from "../components/AdminSidebar"
 
 // TODO:
-// 1.on 'add' click store values in blockchain 
+// 1.on 'add' click store values in blockchain
 
-const AdminHome = () => {
+
+const AdminHome = ({ account }) => {
     const nameRef = useRef()
     const partyRef = useRef()
     const ageRef = useRef()
@@ -22,6 +23,8 @@ const AdminHome = () => {
         }
     }
 
+  console.log(account);
+    
     return (
         <div>
             <div className="wrapper ">
@@ -64,7 +67,7 @@ const AdminHome = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" className="btn btn-success btn-block mb-4" disabled={sucessfullyAdded}>Add</button>
+                                        <button type="submit" className="btn btn-success btn-block mb-4" disabled={sucessfullyAdded} >Add</button>
                                     </form>
                                 </div>
                             </div>

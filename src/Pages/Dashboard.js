@@ -6,17 +6,6 @@ import Sidebar from '../components/Sidebar';
 //     enable voter to vote
 
 const Dashboard = () => {
-
-    const [walletAddress, setWalletAddress] = useState(null);
-    const connectWallet = async () => {
-        if (typeof window.ethereum !== 'undefined') {
-
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-            setWalletAddress(accounts[0])
-        }
-    }
-
     return (
         <div className="wrapper ">
             <Sidebar />

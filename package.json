@@ -18,13 +18,16 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.8",
     "bootstrap": "^5.2.2",
+    "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
     "firebase": "^9.13.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "web3": "^1.8.0"
   },
   "browserslist": {
     "production": [
