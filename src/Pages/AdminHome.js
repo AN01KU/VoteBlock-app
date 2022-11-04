@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react"
 import AdminSidebar from "../components/AdminSidebar"
-
+import Contest from '../contracts/Contest.json'
+import Web3 from 'web3';
 // TODO:
 // 1.on 'add' click store values in blockchain
-
 
 const AdminHome = ({ account }) => {
     const nameRef = useRef()
@@ -11,6 +11,21 @@ const AdminHome = ({ account }) => {
     const ageRef = useRef()
     const qualificationRef = useRef()
     const [sucessfullyAdded, setSucessfullyAdded] = useState(false)
+    
+    useEffect(() => {
+      (async()=>{
+        const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
+        const netID = await web3.eth.net.getId();
+        const deployedNetwork = Contest.networks[netID]
+        const contest = new web3.eth.Contract(
+            Contest.abi,
+            deployedNetwork.address
+        )
+        const count = await contest.methods.contestantsCount().call()
+        console.log(count);
+      })()
+    }, [])
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
