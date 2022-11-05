@@ -4,7 +4,7 @@ contract Contest{
 	string public name = "Ankush";
 
 	//store candidates
-	uint public contestantsCount = 12;
+	uint public contestantsCount = 0;
 	mapping(uint => Contestant) public contestants;
 
 	struct Contestant {
