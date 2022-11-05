@@ -25,19 +25,25 @@ export const Form = (account) => {
 
           
       const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-      const netID = await web3.eth.net.getId();
+      const netID = 5777;
       console.log()
       const deployedNetwork =  Contest.networks[netID]
       console.log("TEST@" + deployedNetwork)
 
       const contest = new web3.eth.Contract(
           Contest.abi,
-          "0xF0C0843f0d237FCFBca1bf7654e8226728E1f13E"
+          deployedNetwork.address
       )
         var add= address;
         console.log(account.account);
 
-      await contest.methods.addVoters(add, adhar).send({from: account.account})
+      await contest.methods.addVoters(add, adhar).send({from: account.account},
+        
+        function(result){
+                console.log("Registered:" + adhar + " " + result);
+              }).catch(function(err){
+                console.error(err);
+              })
       const voterCount = await contest.methods.votersCount().call()
       console.log(voterCount);
       // .call(
@@ -50,13 +56,13 @@ export const Form = (account) => {
       // )
         
 
-        await contest.methods.voterRegisteration(add).call(
-          function(result){
-            console.log("Registered:" + add);
-          }).catch(function(err){
-            console.error(err);
-          }
-       )
+      //   await contest.methods.voterRegisteration(add).call(
+      //     function(result){
+      //       console.log("Registered:" + add);
+      //     }).catch(function(err){
+      //       console.error(err);
+      //     }
+      //  )
         
 
         

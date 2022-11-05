@@ -5,7 +5,7 @@ contract Contest{
 
 	//store candidates
 	uint public contestantsCount = 0;
-	uint public votersCount = 2;
+	uint public votersCount = 0;
 	mapping(uint => Contestant) public contestants;
 
 	struct Contestant {

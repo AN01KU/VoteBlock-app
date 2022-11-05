@@ -27,8 +27,10 @@ export const AdminVoterRegister = () => {
         console.log(voter)
         setvoterData(oldvoters => [...oldvoters, {
           name: voter.id,
-          adhar: voter.adhar
-         
+          adhar: voter.adhar,
+          address: voter.ads,
+          hasVoted: voter.hasVoted
+
         }])
       }
 
@@ -54,17 +56,31 @@ export const AdminVoterRegister = () => {
                           <tr>
                             <th>S.N</th>
                             <th>Account address</th>
-                            <th>Is registered</th>
+                            <th>Adhar Number</th>
+                            <th>Vote Status</th>
+
                           </tr>
                         </thead>
+                        <tbody >
+                      {voterData.map((Data, idx) => (
+                        <tr key={idx}>
+                          <td>{Data.name}</td>
+                          <td>{Data.address}</td>
+                          <td>{Data.adhar}</td>
+                          <td>{Data.hasVoted}</td>
+                          
+                        </tr>
+                      ))}
+                    </tbody>
                       </table>
                     </div>
-                    <form>
+
+                    {/* <form>
                       <div className="form-group">
                         <input type="text" className="form-control" id="accadd" placeholder="Please Enter Voter Account Address here.." required />
                       </div>
                       <button type="submit" className="btn btn-success">Register</button>
-                    </form>
+                    </form> */}
                   </div>
                 </div>
               </div>
