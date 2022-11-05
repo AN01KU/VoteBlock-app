@@ -4,9 +4,6 @@ import CandidatesTable from '../components/CandidatesTable'
 import Contest from '../contracts/Contest.json'
 import Web3 from 'web3';
 
-// TODO:
-// 1.show all candidate info (fetch from blockchain) , no energy cost
-
 const AdminCandidateDetail = () => {
 
   const [candidateData, setCandidateData] = useState([])
