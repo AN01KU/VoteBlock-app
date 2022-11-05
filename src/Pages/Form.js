@@ -31,18 +31,26 @@ export const Form = () => {
 
       const contest = new web3.eth.Contract(
           Contest.abi,
-          deployedNetwork.address
+          "0xF0C0843f0d237FCFBca1bf7654e8226728E1f13E"
       )
         var add= address;
         console.log(add);
-         await contest.deployed().then(function(instance){
-          return instance.voterRegisteration(add);
-        }).then(function(result){
-          console.log("Registered")
-        }).catch(function(err){
-          console.error(err);
-        })
-          console.log(count);
+        //  await contest.deployed().then(function(instance){
+        //   return instance.voterRegisteration(add);
+        // }).then(function(result){
+        //   console.log("Registered")
+        // }).catch(function(err){
+        //   console.error(err);
+        // })
+
+       await contest.methods.voterRegisteration(add).call(
+
+        function(result){
+            console.log("Registered")
+          }).catch(function(err){
+            console.error(err);
+          }
+       )
 
 
       // App1.contracts.Contest.deployed().then(function(instance){

@@ -15,14 +15,14 @@ contract Contest{
 		uint age;
 		string qualification;
 	}
-	//store voters
-	// mapping(address => Voter) public voters;
+	
 
-	// struct Voter{
-	// 	bool hasVoted;
-	// 	uint vote;
-	// 	bool isRegistered;
-	// }
+	 struct Voter{
+		bool hasVoted;
+	 	uint vote;
+	 	bool isRegistered;
+	 }
+    mapping(address => Voter) public voters;
 
 	//for testing purpose
 
@@ -52,6 +52,11 @@ contract Contest{
 		contestants[contestantsCount] = Contestant(contestantsCount, _name, 0, _party, _age, _qualification);
 
 		emit ContestantAdded(contestantsCount, _name, 0, _party, _age, _qualification);
+	}
+
+
+		function voterRegisteration(address user) public {
+		voters[user].isRegistered=true;
 	}
 
 	// inc votes
