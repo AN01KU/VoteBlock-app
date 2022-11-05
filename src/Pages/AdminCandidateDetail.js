@@ -23,7 +23,7 @@ const AdminCandidateDetail = () => {
       const candidateCount = await contest.methods.contestantsCount().call()
       for (var i = 1; i <= candidateCount; i++) {
         const candidate = await contest.methods.contestants(i).call()
-        setCandidateData([...candidateData, {
+        setCandidateData(oldCandidates => [...oldCandidates, {
           name: candidate.name,
           age: candidate.age,
           qualification: candidate.qualification,
@@ -36,8 +36,6 @@ const AdminCandidateDetail = () => {
     })()
 
   }, [])
-
-  console.log(typeof candidateData);
 
   return (
     <div className="wrapper ">
@@ -62,8 +60,16 @@ const AdminCandidateDetail = () => {
                         <th >Votes</th></tr>
                     </thead>
                     <tbody id="contestantsResultsAdmin">
-                        <tr>
+                      {candidateData.map((candidate, idx) => (
+                        <tr key={idx}>
+                          <td>{candidate.id}</td>
+                          <td>{candidate.name}</td>
+                          <td>{candidate.age}</td>
+                          <td>{candidate.party}</td>
+                          <td>{candidate.qualification}</td>
+                          <td>{candidate.voteCount}</td>
                         </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
