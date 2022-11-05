@@ -14,16 +14,19 @@ const AdminHome = ({ account }) => {
     
     useEffect(() => {
       (async()=>{
+          
         const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
         const netID = await web3.eth.net.getId();
-        const deployedNetwork = Contest.networks[netID]
+        const deployedNetwork =  Contest.networks[netID]
+        console.log("TEST@" + deployedNetwork)
+
         const contest = new web3.eth.Contract(
             Contest.abi,
             deployedNetwork.address
         )
         const count = await contest.methods.contestantsCount().call()
         console.log(count);
-      })()
+      })
     }, [])
     
 
