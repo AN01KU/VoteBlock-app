@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import AdminSidebar from "../components/AdminSidebar"
 import Contest from '../contracts/Contest.json'
 import Web3 from 'web3';
+
 // TODO:
 // 1.on 'add' click store values in blockchain
 
@@ -11,10 +12,14 @@ const AdminHome = ({ account }) => {
     const ageRef = useRef()
     const qualificationRef = useRef()
     const [sucessfullyAdded, setSucessfullyAdded] = useState(false)
-    
-    useEffect(() => {
-      (async()=>{
-          
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const name = nameRef.current.value
+        const party = partyRef.current.value
+        const age = ageRef.current.value
+        const qualification = qualificationRef.current.value
+
         const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
         const netID = await web3.eth.net.getId();
         const deployedNetwork =  Contest.networks[netID]
@@ -24,25 +29,11 @@ const AdminHome = ({ account }) => {
             Contest.abi,
             deployedNetwork.address
         )
-        const count = await contest.methods.contestantsCount().call()
-        console.log(count);
-      })
-    }, [])
-    
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const candidate = {
-            name: nameRef.current.value,
-            party: partyRef.current.value,
-            age: ageRef.current.value,
-            qualification: qualificationRef.current.value,
-            votes: 0
-        }
+        
+        await contest.methods.addCandidate(name, party, age, qualification).send({from: account})
+        
     }
 
-  console.log(account);
-    
     return (
         <div>
             <div className="wrapper ">
