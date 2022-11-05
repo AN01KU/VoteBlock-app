@@ -3,9 +3,6 @@ import AdminSidebar from "../components/AdminSidebar"
 import Contest from '../contracts/Contest.json'
 import Web3 from 'web3';
 
-// TODO:
-// 1.on 'add' click store values in blockchain
-
 const AdminHome = ({ account }) => {
     const nameRef = useRef()
     const partyRef = useRef()

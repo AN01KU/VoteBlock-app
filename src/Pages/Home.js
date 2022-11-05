@@ -1,21 +1,19 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import '../css/material_dashboard.css';
 
 export const Home = () => {
-  const auth = getAuth()
-  const [user, setUser] = useState()
-  const navigate= useNavigate()
+  const navigate = useNavigate()
 
-// TODO:
-// 1.on page load check for current user if null navigate to login with alert.
+  useEffect(() => {
+    if (localStorage.getItem('isloggedIn') === 'false') {
+      alert('No user found')
+      navigate('/login')
+    }
 
-useEffect(()=>{
-  const user = auth.currentUser
-  console.log(user);
-},[])
+  }, [])
+
 
   return (
     <div className="wrapper" >

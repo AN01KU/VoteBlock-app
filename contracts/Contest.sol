@@ -57,7 +57,7 @@ contract Contest{
 	// inc votes
 	function vote(uint _contestantId) public {
 		require(_contestantId > 0 && _contestantId<=contestantsCount);
-			contestants[_contestantId].voteCount++;
+		contestants[_contestantId].voteCount++;
 
 		emit Voted(_contestantId, contestants[_contestantId].name, contestants[_contestantId].voteCount, contestants[_contestantId].party, contestants[_contestantId].age, contestants[_contestantId].qualification);
 	}
