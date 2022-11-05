@@ -5,6 +5,7 @@ contract Contest{
 
 	//store candidates
 	uint public contestantsCount = 0;
+	uint public votersCount = 2;
 	mapping(uint => Contestant) public contestants;
 
 	struct Contestant {
@@ -18,13 +19,19 @@ contract Contest{
 	
 
 	 struct Voter{
+		uint id;
 		bool hasVoted;
 	 	uint vote;
 	 	bool isRegistered;
+		uint adhar;
+		address ads;
+		
 	 }
-    mapping(address => Voter) public voters;
 
-	//for testing purpose
+
+    mapping(uint => Voter) public voters;
+
+	
 
 	event ContestantAdded (
 		uint id,
@@ -33,6 +40,15 @@ contract Contest{
 		string party,
 		uint age,
 		string qualification
+	);
+
+	event VoterAdded (
+		uint id,
+		bool hasVoted,
+	 	uint vote,
+	 	bool isRegistered,
+		uint adhar,
+		address ads
 	);
 
 	event Voted(
@@ -53,10 +69,19 @@ contract Contest{
 
 		emit ContestantAdded(contestantsCount, _name, 0, _party, _age, _qualification);
 	}
+	function addVoters(address _user, uint _adhar) public {
+		votersCount ++;
+		bool hasVoted = false;
+	 	uint vote = 0;
+	 	bool isRegistered = true;
+		
+		voters[votersCount] = Voter(votersCount, hasVoted, vote, isRegistered, _adhar, _user);
+		emit VoterAdded(votersCount, hasVoted, vote, isRegistered, _adhar, _user );
+	}
 
 
 		function voterRegisteration(address user) public {
-		voters[user].isRegistered=true;
+		voters[votersCount].isRegistered=true;
 	}
 
 	// inc votes

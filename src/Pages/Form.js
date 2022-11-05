@@ -13,9 +13,10 @@ import Web3 from 'web3';
 //     if yes do email verification using firebase auth 
 //       update isVerified to pending 
 
-export const Form = () => {
+export const Form = (account) => {
 
   const [address, Setaddress] = useState(0);
+  const [adhar, Setadhar] = useState(0);
 
   const register = async () => {
     console.log("TEST0")
@@ -34,32 +35,34 @@ export const Form = () => {
           "0xF0C0843f0d237FCFBca1bf7654e8226728E1f13E"
       )
         var add= address;
-        console.log(add);
-        //  await contest.deployed().then(function(instance){
-        //   return instance.voterRegisteration(add);
-        // }).then(function(result){
-        //   console.log("Registered")
-        // }).catch(function(err){
-        //   console.error(err);
-        // })
+        console.log(account.account);
 
-       await contest.methods.voterRegisteration(add).call(
+      await contest.methods.addVoters(add, adhar).send({from: account.account})
+      const voterCount = await contest.methods.votersCount().call()
+      console.log(voterCount);
+      // .call(
+      //      function(result){
+      //       console.log("Registered:" + add);
+      //     }).catch(function(err){
+      //       console.error(err);
+      //     }
 
-        function(result){
-            console.log("Registered")
+      // )
+        
+
+        await contest.methods.voterRegisteration(add).call(
+          function(result){
+            console.log("Registered:" + add);
           }).catch(function(err){
             console.error(err);
           }
        )
+        
+
+        
 
 
-      // App1.contracts.Contest.deployed().then(function(instance){
-      //   return instance.voterRegisteration(add);
-      // }).then(function(result){
-      //   console.log("Registered")
-      // }).catch(function(err){
-      //   console.error(err);
-      // })
+     
     
 
   }
@@ -108,7 +111,7 @@ export const Form = () => {
                   <div className="col">
                     <div className="form-outline">
                       <br />
-                      <input type="text" id="name" className="form-control" name='aadharno' required ref={aadharnoRef} />
+                      <input onChange={(e) => Setadhar(e.target.value) } type="text" id="name" className="form-control" name='aadharno'  required ref={aadharnoRef} />
                       <label className="form-label" >Aadhar Number</label>
                     </div>
                   </div>

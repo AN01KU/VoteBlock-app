@@ -1,10 +1,40 @@
 import AdminSidebar from '../components/AdminSidebar.jsx'
+import Contest from '../contracts/Contest.json'
+import Web3 from 'web3';
+import { useState, useEffect } from 'react';
 
 // TODO:
 // 1.add all voters in table format 
 // 2.users whos isVerfied is pending -> complete the process with accountadd (blockchain ka)
 
 export const AdminVoterRegister = () => {
+
+  const [voterData, setvoterData] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
+      const netID = await web3.eth.net.getId();
+      const deployedNetwork = Contest.networks[netID]
+      const contest = new web3.eth.Contract(
+        Contest.abi,
+        deployedNetwork.address
+      )
+      const voterCount = await contest.methods.votersCount().call()
+      console.log(voterCount);
+      for (var i = 1; i <= voterCount; i++) {
+        const voter = await contest.methods.voters(i).call()
+        console.log(voter)
+        setvoterData(oldvoters => [...oldvoters, {
+          name: voter.id,
+          adhar: voter.adhar
+         
+        }])
+      }
+
+    })()
+
+  }, [])
   return (
     <div className="wrapper ">
       <AdminSidebar />
