@@ -12,11 +12,9 @@ export const Sidebar = () => {
   const navigate = useNavigate()
   const logout = () => {
     signOut(auth).then(() => {
-      localStorage.setItem('isloggedIn', false)
+      localStorage.setItem("currentUserEmail", '')
       navigate('/')
-    }).catch((error) => {
-      console.log(e)
-    });
+    })
   }
   
 

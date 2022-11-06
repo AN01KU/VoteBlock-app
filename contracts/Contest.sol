@@ -4,9 +4,7 @@ contract Contest{
 	string public name = "Ankush";
 
 	//store candidates
-	uint public contestantsCount = 0;
-	uint public votersCount = 0;
-	mapping(uint => Contestant) public contestants;
+	
 
 	struct Contestant {
 		uint id;
@@ -18,20 +16,18 @@ contract Contest{
 	}
 	
 
-	 struct Voter{
-		uint id;
+	struct Voter{
 		bool hasVoted;
 	 	uint vote;
 	 	bool isRegistered;
-		uint adhar;
-		address ads;
-		
-	 }
+	}
 
-
-    mapping(uint => Voter) public voters;
-
+	uint public contestantsCount = 0;
+	mapping(uint => Contestant) public contestants;
+    mapping(address => Voter) public voters;
 	
+	// *************************************************************
+
 
 	event ContestantAdded (
 		uint id,
@@ -43,22 +39,13 @@ contract Contest{
 	);
 
 	event VoterAdded (
-		uint id,
 		bool hasVoted,
-	 	uint vote,
-	 	bool isRegistered,
-		uint adhar,
-		address ads
+		uint vote,
+		bool isRegistered
 	);
 
-	event Voted(
-		uint id,
-		string name,
-		uint voteCount,
-		string party,
-		uint age,
-		string qualification
-	);
+
+	// ****************************************************************
 
 	//add candidates
 	
@@ -69,29 +56,19 @@ contract Contest{
 
 		emit ContestantAdded(contestantsCount, _name, 0, _party, _age, _qualification);
 	}
-	function addVoters(address _user, uint _adhar) public {
-		votersCount ++;
-		bool hasVoted = false;
-	 	uint vote = 0;
-	 	bool isRegistered = true;
-		
-		voters[votersCount] = Voter(votersCount, hasVoted, vote, isRegistered, _adhar, _user);
-		emit VoterAdded(votersCount, hasVoted, vote, isRegistered, _adhar, _user );
-	}
 
+	//add voter
 
-		function voterRegisteration(address user) public {
-		voters[votersCount].isRegistered=true;
+	function voterRegisteration(address user) public {
+		voters[user].isRegistered=true;
+
+		emit VoterAdded(false,0,true);
 	}
 
 	// inc votes
-	function vote(uint _contestantId) public {
-		require(_contestantId > 0 && _contestantId<=contestantsCount);
-		contestants[_contestantId].voteCount++;
-
-		emit Voted(_contestantId, contestants[_contestantId].name, contestants[_contestantId].voteCount, contestants[_contestantId].party, contestants[_contestantId].age, contestants[_contestantId].qualification);
-	}
-
-
+	// function vote(uint _contestantId) public {
+	// 	require(_contestantId > 0 && _contestantId<=contestantsCount);
+	// 	contestants[_contestantId].voteCount++;
+	// }
 } 	
 

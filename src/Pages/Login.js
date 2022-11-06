@@ -22,7 +22,7 @@ export const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      localStorage.setItem("isloggedIn", true)
+      localStorage.setItem("currentUserEmail", emailRef.current.value)
       navigate('/home');
     } catch {
       setError("Failed to sign in");

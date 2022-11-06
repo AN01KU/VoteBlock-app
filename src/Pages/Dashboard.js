@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Contest from '../contracts/Contest.json'
 import Web3 from 'web3';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,9 +11,16 @@ import Web3 from 'web3';
 //     enable voter to vote
 
 const Dashboard = () => {
-    const [candidateData, setCandidateData] = useState([])
+  const [candidateData, setCandidateData] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (localStorage.getItem("currentUserEmail") === '') {
+      alert('No user found')
+      navigate('/login')
+    }
+
+
     (async () => {
       const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
       const netID = await web3.eth.net.getId();
@@ -39,36 +47,43 @@ const Dashboard = () => {
   }, [])
 
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  }
 
-
-    return (
-        <div className="wrapper ">
-            <Sidebar />
-            <div className="main-panel">
-                <div className="content" style={{ marginTop: "20px !important" }} >
-                    <div className="container" style={{ width: "850px" }}>
-                        <div style={{ display: 'flex' }}>
-                            
-
-                         {candidateData.map((candidate, idx) => (
-                            <div key={idx}>
-                                <h1> {candidate.id}</h1>
-                                <h1>Candidate Name:  {candidate.name}</h1>
-                                <h1>Candidate Age:  {candidate.name}</h1>
-                                <h1>Candidate Party:  {candidate.name}</h1>
-                               
-
-                                <button>Vote</button>
-                            </div>
-                             
-                      ))}
-                            
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div className="wrapper ">
+      <Sidebar />
+      <div className="main-panel">
+        <div className="content" style={{ marginTop: "20px !important" }}>
+          <div className="container" style={{ width: "850px" }}>
+            <div id="currentPhase">
             </div>
+            <div>
+              {candidateData.map((candidate, idx) => (
+                <div key={idx}>
+                  <p>{candidate.id}</p>
+                  <p>{candidate.name}</p>
+                  <p>{candidate.age}</p>
+                  <p>{candidate.party}</p>
+                  <p>{candidate.qualification}</p>
+                  <p>{candidate.voteCount}</p>
+                </div>
+              ))}
+            </div>
+            <div>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="contestantSelect">Select Contestant : </label>
+                  <button type="submit" className="btn btn-info">Cast your vote</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Dashboard;

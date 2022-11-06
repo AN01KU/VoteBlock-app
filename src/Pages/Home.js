@@ -7,13 +7,11 @@ export const Home = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (localStorage.getItem('isloggedIn') === 'false') {
+    if (localStorage.getItem("currentUserEmail") === '') {
       alert('No user found')
       navigate('/login')
     }
-
   }, [])
-
 
   return (
     <div className="wrapper" >
