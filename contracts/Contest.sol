@@ -65,10 +65,10 @@ contract Contest{
 		emit VoterAdded(false,0,true);
 	}
 
-	// inc votes
-	// function vote(uint _contestantId) public {
-	// 	require(_contestantId > 0 && _contestantId<=contestantsCount);
-	// 	contestants[_contestantId].voteCount++;
-	// }
+	 //inc votes
+	 function vote(uint _contestantId) public {
+		require(_contestantId > 0 && _contestantId<=contestantsCount);
+		contestants[_contestantId].voteCount++;
+	 }
 } 	
 

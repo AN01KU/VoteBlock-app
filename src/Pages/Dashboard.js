@@ -3,6 +3,9 @@ import Sidebar from '../components/Sidebar';
 import Contest from '../contracts/Contest.json'
 import Web3 from 'web3';
 import { useNavigate } from 'react-router-dom';
+import CandProfile from '../components/CandProfile'
+import '../css/profile.css';
+
 
 
 
@@ -10,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 // 1.check for current phase if 'final stage' :
 //     enable voter to vote
 
-const Dashboard = () => {
+const Dashboard = (account) => {
   const [candidateData, setCandidateData] = useState([])
   const navigate = useNavigate()
 
@@ -57,9 +60,34 @@ const Dashboard = () => {
       <div className="main-panel">
         <div className="content" style={{ marginTop: "20px !important" }}>
           <div className="container" style={{ width: "850px" }}>
-            <div id="currentPhase">
-            </div>
-            <div>
+          <div className="minhold">
+          
+
+             {candidateData.map((candidate, idx) => (
+               <div className='containerSide' key={idx}>
+                   <CandProfile
+                    key = {idx}
+                    id= {candidate.id}
+                    name = {candidate.name}
+                    age = {candidate.age}
+                    party = {candidate.party}
+                    qualification= {candidate.qualification} 
+                    votes = {candidate.voteCount}
+                    account = {account} />
+                   </div>
+              ))}
+              
+              </div>
+
+
+
+
+
+
+
+
+
+            {/* <div>
               {candidateData.map((candidate, idx) => (
                 <div key={idx}>
                   <p>{candidate.id}</p>
@@ -70,15 +98,16 @@ const Dashboard = () => {
                   <p>{candidate.voteCount}</p>
                 </div>
               ))}
-            </div>
-            <div>
+            </div> */}
+            
+            {/* <div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="contestantSelect">Select Contestant : </label>
                   <button type="submit" className="btn btn-info">Cast your vote</button>
                 </div>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
