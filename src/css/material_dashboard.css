@@ -1,18 +1,4 @@
-/*!
 
- =========================================================
- * Material Dashboard - v2.1.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-dashboard
- * Copyright 2020 Creative Tim (http://www.creative-tim.com)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-/*     brand Colors              */
 .card {
   font-size: .875rem;
 }
@@ -56,9 +42,12 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
   text-align: left;
-  background-color: #fafafa;
+  
+
+  /* Chrome 10-25, Safari 5.1-6 */
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 [tabindex="-1"]:focus {
@@ -15164,7 +15153,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   left: 0;
   z-index: 2;
   width: 260px;
-  background: #fff;
+  background: black;
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
@@ -15181,7 +15170,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar[data-background-color="black"] {
-  background-color: #191919;
+  background-color: #fff4f4;
 }
 
 .sidebar .sidebar-wrapper {
@@ -15338,7 +15327,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a {
   margin: 10px 15px 0;
   border-radius: 3px;
-  color: #3C4858;
+  color: white;
+  font-weight: 300px;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -15570,8 +15560,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .main-panel>.content {
-  margin-top: 70px;
-  padding: 30px 15px;
+  
+  padding: 10px 15px;
   min-height: calc(100vh - 123px);
 }
 

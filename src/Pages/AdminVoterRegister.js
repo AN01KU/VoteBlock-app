@@ -58,6 +58,7 @@ export const AdminVoterRegister = ({ account }) => {
       Contest.abi,
       deployedNetwork.address
     )
+    
 
     await contest.methods.voterRegisteration(addressRef.current.value).send({from: account})
    

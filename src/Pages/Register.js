@@ -4,6 +4,8 @@ import FormInput from "../components/FormInput";
 import { useAuth } from "../context/AuthContext";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../css/registration_from.css";
+
 
 const Register = () => {
 

@@ -1,86 +1,151 @@
-*{
-    margin: 0; padding:0; box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.site-header {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  
+  
+  .site-header {
     width: 100%;
     height: 100vh;
-    background: #33b5e5;
-    background: linear-gradient(57deg, #34d8eb ); 
-    clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 100%);
-
-}
-
-
-nav{
-    width: 100%; height: 100px;
-    background: linear-gradient(57deg , #34d8eb); 
-
-    display: flex; color: white;
+    background-image: url(
+      "https://assets.website-files.com/626a7239089e3c2ed7e9ea62/6320eea447b8a0bcbe2f67df_bcthumb.png");
+                  background-repeat: repeat;
+                  background-size: 200px 150px;
+                  text-align: center;
+   
+                  
     
-}
-
-.logo{
-    width:50%;
+  }
+  
+  nav {
+    
+    width: 100%;
     height: 100px;
-}
-
-.logo h1{
+    margin-left: 0;
+    padding-left: 0px;
+    
+    
+    display: flex;
+    color:#B7C4CF;
+  }
+  
+  .navtitle{
+    font-weight: 600;
+    -webkit-text-decoration: #4C6793 double underline;
+    text-decoration: #4C6793 double underline;
+  }
+  
+  
+  
+  .logo {
+    
+    height: 100px;
+  }
+  
+  .logo h1 {
     line-height: 100px;
     padding-left: 50px;
-    
-}
-
-.menu{
-    width: 50%; height: 100px;
-}
-
-.menu ul{
+  }
+  
+  .menu {
+    width: 50%;
+    height: 100px;
+  }
+  
+  .menu ul {
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items:  center;
-}
-
-.menu ul li{
+    align-items: center;
+  }
+  
+  .menu ul li {
     list-style: none;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-}
-
-section{ display: flex;  }
-
-.leftside { width: 60%; height: auto; overflow: hidden; margin-top: 20px;}
-
-.leftside img{ padding-left: 50px; width: 800px;  height: 400px; }
-
-.rightside{ width:40%; height: 300px; color: white; text-align: center; margin-top: 80px; padding: 40px;}
-
-.rightside h1{ text-align: center;
+  }
+  
+  
+  
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #050505;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(5, 5, 5, 1), rgba(125, 124, 126, 1));
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(5, 5, 5, 1), rgba(125, 124, 126, 1))
+  }
+  
+  .leftside {
+    
+    height: auto;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 50px;
+  
+  }
+  
+  
+  .rightside {
+    position: absolute;
+    left: 800px;
+    top: 150px;
+  
+    width: 40%;
+    height: 300px;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+    padding: 40px;
+  }
+  
+  .rightside h1 {
+    text-align: center;
     color: #ffffff;
     font-size: 50px;
     font-weight: 900;
-    text-transform: uppercase; } 
-
-.rightside p {  
-    font-size: 1.1rem; padding: 30px 0; }
-
-.rightside button{   font-size: 17px;
-    font-weight: 600;
-    color: black;
     text-transform: uppercase;
-    background: linear-gradient(57deg,#34d8eb , #b1ebf2); 
-    border-radius: 25px;
-    padding: 20px 35px ; 
-
-}
-
-
-
-.rightside button:hover{
-      background: linear-gradient(57deg,#8cc2ed,#46a5f2, );   
-}
+  }
+  
+  .rightside p {
+    font-size: 1.1rem;
+    padding: 30px 0;
+  }
+  
+  .rightside button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 14px 24px;
+    margin-right: 30px;
+    border: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    color: #fff;
+  }
+  
+  .rightside button:hover {
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+  
+  }
+   .logo1{
+     float: left;
+     margin-top: 100px;
+     margin-left: 100px;
+     width: 30%;
+     height: 55%;
+   }
+  
+  
