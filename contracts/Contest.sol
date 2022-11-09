@@ -73,5 +73,11 @@ contract Contest{
 		voters[msg.sender].hasVoted=true;
 		voters[msg.sender].vote=_contestantId;
 	}
+
+
+	function voterInfo(address addr) public returns(bool) {
+        bool hasVotedCheck =  voters[addr].hasVoted;
+		return hasVotedCheck;
+    }
 } 	
 

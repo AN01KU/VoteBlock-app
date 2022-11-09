@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import loadWeb3 from '../context/Ethereum';
+import CandProfile from '../components/CandProfile'
+import '../css/profile.css';
 
 
 // TODO:
@@ -52,21 +54,30 @@ const Dashboard = ({ account }) => {
       <div className="main-panel">
         <div className="content" style={{ marginTop: "20px !important" }}>
           <div className="container" style={{ width: "850px" }}>
-            <div id="currentPhase">
-            </div>
-            <div>
-              <form onSubmit={handleSubmit} ref={formRef}>
-                <div className="form-group">
-                  {/* <label htmlFor="contestantSelect">Select Contestant : </label> */}
-                  Enter Candidate ID<input ref={candidateIdRef} />
-                  <button type="submit" className="btn btn-info">Cast your vote</button>
-                </div>
-              </form>
-            </div> 
+          <div className="minhold">
+          
+
+             {candidateData.map((candidate, idx) => (
+               <div className='containerSide' key={idx}>
+                   <CandProfile
+                    key = {idx}
+                    id= {candidate.id}
+                    name = {candidate.name}
+                    age = {candidate.age}
+                    party = {candidate.party}
+                    qualification= {candidate.qualification} 
+                    votes = {candidate.voteCount}
+                    account = {account} />
+                   </div>
+              ))}
+              
+              </div>
+
           </div>
         </div>
       </div>
     </div>
+   
   )
 }
 
