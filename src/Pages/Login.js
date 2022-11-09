@@ -1,4 +1,4 @@
-//import "../css/registration_from.css";
+import "../css/registration_from.css";
 import img from "../assets/img/ev.png";
 import { useRef, useState } from "react";
 import FormInput from "../components/FormInput";
