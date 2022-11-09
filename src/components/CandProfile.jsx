@@ -12,16 +12,9 @@ import loadWeb3 from '../context/Ethereum';
 const candProfile = ({id, name, age, qualification, party, votes, account }) => {
     const [voteID, setVoteID] =  useState(null);
 	const [voted, setvoted] =  useState(null);
-
-
-
-
-
-
+	const [valid, setValid] = useState("Already voted");
     const handleSubmit = (event)=> {
        var id = event.target.id;
-
-
        console.log(id);
          (async () => {
 			const contest = await loadWeb3()
@@ -29,26 +22,24 @@ const candProfile = ({id, name, age, qualification, party, votes, account }) => 
      
 
     })()
-
-
     }
-
 	useEffect(() => {
 		(async () => {
 			const contest = await loadWeb3()
      var hasVoted =    await contest.methods.voterInfo(account).call();
 	 console.log(hasVoted)
 	 setvoted(hasVoted)
+	 const candidateCount = await contest.methods.contestantsCount().call()
+   		if (candidateCount > 0 ) {
+			   setValid("You have already voted")
+
+  			 }
+			   else setValid("No candidate to vote yet")
      
 
-    })()
+    })
 
 	}, [] )
-
-
-
-
-
   return ( 
 
 	
@@ -57,8 +48,8 @@ const candProfile = ({id, name, age, qualification, party, votes, account }) => 
 
   <div className="center">
 
-  {voted ? (
-	<h2 style={{ marginTop: '2rem' }}>To bad! No candidate to vote here</h2>
+  {!voted  ? (
+	<h2 style={{ margin: '4rem 15rem' }}>{valid}</h2>
 
 
 
