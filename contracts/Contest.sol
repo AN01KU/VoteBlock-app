@@ -73,5 +73,11 @@ contract Contest{
 		voters[msg.sender].hasVoted=true;
 		voters[msg.sender].vote=_contestantId;
 	}
+
+	string public currentPhase = 'registration';
+
+	function changePhase(string memory phase) public {
+		currentPhase = phase;
+	}
 } 	
 
