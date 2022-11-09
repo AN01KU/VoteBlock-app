@@ -32,15 +32,14 @@ const AdminLogin = () => {
 
     return (
         <div className="center">
-            <div className="header">Login Form</div>
-            <form onSubmit={handleSubmit}>
+            <div className="header">Admin Login</div>
+            <form className='adminForm' onSubmit={handleSubmit}>
                 <FormInput
                     type="text"
                     placeholder="Email Address"
                     name="email_address"
                     refer={emailRef}
                 />
-                <i className="far fa-envelope"><FontAwesomeIcon icon={faEnvelope} /></i>
                 <FormInput
                     type="password"
                     placeholder="Password"
@@ -48,7 +47,7 @@ const AdminLogin = () => {
                     refer={passwordRef}
                 />
                 <i className="fas fa-lock"><FontAwesomeIcon icon={faLock} /></i>
-                <input type="submit" value="Login" />
+                <input type="submit"  className="btn" id=''  value="Login" />
                 <a href="#">Forgot Password?</a>
             </form>
         </div>

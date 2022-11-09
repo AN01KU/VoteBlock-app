@@ -418,3 +418,11 @@ form.sign-in-form {
     left: 50%;
   }
 }
+.header{
+  margin-top: 200px;
+  margin-bottom: 100px;
+  font-size: 4rem;
+
+  text-align: center;
+
+}
