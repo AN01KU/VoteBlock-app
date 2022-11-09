@@ -2,6 +2,9 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import '../css/material_dashboard.css';
+import '../css/index.css';
+import { color } from '@mui/system';
+
 
 export const Home = () => {
   const navigate = useNavigate()
@@ -17,15 +20,15 @@ export const Home = () => {
     <div className="wrapper" >
       <Sidebar />
       <div className="main-panel">
-        <div className="container" style={{ width: "900px" }}>
+        <div className="container" >
           <div className="row">
             <div className="col-md-12">
-              <div className="card">
+              <div className="card" style={{  }}>
                 <div className="card-header card-header-info">
                   <h4 className="card-title">User Manual</h4>
                 </div>
                 <div className="card-body">
-                  <h4>Welcome </h4>
+                  
                   <h5>These are few Guidelines for user : </h5>
                   <h5>1. Voter  Registration</h5>
                   <ul>

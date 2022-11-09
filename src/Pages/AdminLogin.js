@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import FormInput from '../components/FormInput';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "../css/registration_from.css";
+
 
 const AdminLogin = () => {
     const { login } = useAuth();

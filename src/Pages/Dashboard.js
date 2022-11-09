@@ -62,7 +62,7 @@ const Dashboard = ({ account }) => {
                   <button type="submit" className="btn btn-info">Cast your vote</button>
                 </div>
               </form>
-            </div> */}
+            </div> 
           </div>
         </div>
       </div>

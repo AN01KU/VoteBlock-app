@@ -2968,15 +2968,15 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff;
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #256D85;
+  border-color: #256D85;
   box-shadow: none;
 }
 
 .btn-info:hover {
   color: #ffffff;
-  background-color: #009aae;
-  border-color: #008fa1;
+  background-color: #256D85;
+  border-color: #256D85;
 }
 
 .btn-info:focus,
@@ -2987,22 +2987,22 @@ fieldset:disabled a.btn {
 .btn-info.disabled,
 .btn-info:disabled {
   color: #ffffff;
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #256D85;
+  border-color: #256D85;
 }
 
 .btn-info:not(:disabled):not(.disabled):active,
 .btn-info:not(:disabled):not(.disabled).active,
 .show>.btn-info.dropdown-toggle {
   color: #ffffff;
-  background-color: #008fa1;
-  border-color: #008394;
+  background-color: #256D85;
+  border-color: #256D85;
 }
 
 .btn-info:not(:disabled):not(.disabled):active:focus,
 .btn-info:not(:disabled):not(.disabled).active:focus,
 .show>.btn-info.dropdown-toggle:focus {
-  box-shadow: none, 0 0 0 0.2rem rgba(0, 188, 212, 0.5);
+  box-shadow: none, 0 0 0 0.2rem #256D85;
 }
 
 .btn-warning {
@@ -15272,13 +15272,13 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li .dropdown-menu a:focus,
 .sidebar .nav li.active>[data-toggle="collapse"] {
-  background-color: rgba(200, 200, 200, 0.2);
+  background-color: #256D85;
   color: #3C4858;
   box-shadow: none;
 }
 
 .sidebar .nav li.active>[data-toggle="collapse"] i {
-  color: #a9afbb;
+  color: #256D85;
 }
 
 .sidebar .nav li.active>a,
@@ -15455,7 +15455,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar[data-color="azure"] li.active>a {
-  background-color: #00bcd4;
+  background-color: #256D85;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
 }
 
@@ -17516,7 +17516,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card.bg-info,
 .card.card-rotate.bg-info .front,
 .card.card-rotate.bg-info .back {
-  background: linear-gradient(60deg, #26c6da, #00acc1);
+  background: linear-gradient(60deg, #06283D, #00acc1);
 }
 
 .card .card-header-success .card-icon,
@@ -19741,4 +19741,22 @@ Copyright (c) 2015 Daniel Eden
   .sidebar .navbar-form {
     display: none !important;
   }
+}
+.main-panel {
+  margin-top: 50px;
+}
+.card {
+ background-color: #DFF6FF;
+
+}
+.card .card-body {
+  color: #000000 !important;
+}
+
+.wrapper {
+  background: #256D85;
+}
+
+.card .card-body {
+  font-weight: 600;
 }

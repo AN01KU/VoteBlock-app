@@ -15,6 +15,7 @@ import Result from './Pages/Result';
 import { useState, useEffect } from "react"
 
 
+
 export const App = () => {
     const [walletAddress, setWalletAddress] = useState(null);
 
