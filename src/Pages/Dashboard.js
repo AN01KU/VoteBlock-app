@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import loadWeb3 from '../context/Ethereum';
-import userLogo from '../assets/img/Sample_User_Icon.png'
+import CandProfile from '../components/CandProfile'
+import '../css/profile.css';
+
 
 // TODO:
 // 1.check for current phase if 'final stage' :
@@ -13,8 +15,6 @@ const Dashboard = ({ account }) => {
   const navigate = useNavigate()
   const candidateIdRef = useRef()
   const formRef = useRef()
-  const [currentPhase, setCurrentPhase] = useState('')
-
   useEffect(() => {
     if (localStorage.getItem("currentUserEmail") === '') {
       alert('No user found')
@@ -35,8 +35,6 @@ const Dashboard = ({ account }) => {
           voteCount: candidate.voteCount,
         }])
       }
-      const phase = await contest.methods.currentPhase().call()
-      setCurrentPhase(phase)
 
     })()
 
@@ -51,52 +49,35 @@ const Dashboard = ({ account }) => {
   }
 
   return (
-    <div className="wrapper" >
+    <div className="wrapper ">
       <Sidebar />
       <div className="main-panel">
-        <div className="container" style={{ width: "900px" }}>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-header card-header-info">
-                  <h4 className="card-title">Vote</h4>
-                </div>
-                {currentPhase === 'registration' ? (
-                  <div className="container" style={{ width: "850px" }}>
-                    <h1>Registation is still going!</h1>
-                  </div>
-                )
-                  :
-                  (
-                    <div className="container" style={{ width: "850px" }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                        {candidateData.map((element, key) => (
-                          <div key={key}>
-                            <h2>Candidate {element.id}</h2>
-                            <img src={userLogo} alt='user-logo' style={{ width: '75px' }} />
-                            <p>Name: {element.name}</p>
-                            <p>Party: {element.party}</p>
-                            <p>Age: {element.age}</p>
-                            <p>Qualification: {element.qualification}</p>
-                          </div>
-                        ))}
-                      </div>
-                      <div>
-                        <form onSubmit={handleSubmit} ref={formRef}>
-                          <div className="form-group">
-                            Enter Candidate ID<input ref={candidateIdRef} />
-                            <button type="submit" className="btn btn-info">Cast your vote</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  )}
+        <div className="content" style={{ marginTop: "20px !important" }}>
+          <div className="container" style={{ width: "850px" }}>
+          <div className="minhold">
+          
+
+             {candidateData.map((candidate, idx) => (
+               <div className='containerSide' key={idx}>
+                   <CandProfile
+                    key = {idx}
+                    id= {candidate.id}
+                    name = {candidate.name}
+                    age = {candidate.age}
+                    party = {candidate.party}
+                    qualification= {candidate.qualification} 
+                    votes = {candidate.voteCount}
+                    account = {account} />
+                   </div>
+              ))}
+              
               </div>
-            </div>
+
           </div>
         </div>
       </div>
     </div>
+   
   )
 }
 

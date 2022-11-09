@@ -148,4 +148,15 @@
      height: 55%;
    }
   
-  
+  .card .card-body {
+    padding-left: 40px !important;
+    font-family: 'Montserrat';
+  }
+
+  .card .card-body h4 {
+    font-size: 3rem;
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 500;
+    
+  }

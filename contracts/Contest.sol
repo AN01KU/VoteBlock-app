@@ -73,11 +73,14 @@ contract Contest{
 		voters[msg.sender].hasVoted=true;
 		voters[msg.sender].vote=_contestantId;
 	}
-
 	string public currentPhase = 'registration';
 
 	function changePhase(string memory phase) public {
 		currentPhase = phase;
 	}
+	function voterInfo(address addr) public returns(bool) {
+        bool hasVotedCheck =  voters[addr].hasVoted;
+		return hasVotedCheck;
+    }
 } 	
 
