@@ -1,11 +1,8 @@
 pragma solidity 0.5.16;
 
 contract Contest{
-	string public name = "Ankush";
-
-	//store candidates
+	//store candidate/contestant
 	
-
 	struct Contestant {
 		uint id;
 		string name;
@@ -14,7 +11,8 @@ contract Contest{
 		uint age;
 		string qualification;
 	}
-	
+
+	//store voter
 
 	struct Voter{
 		bool hasVoted;
@@ -65,10 +63,15 @@ contract Contest{
 		emit VoterAdded(false,0,true);
 	}
 
-	// inc votes
-	// function vote(uint _contestantId) public {
-	// 	require(_contestantId > 0 && _contestantId<=contestantsCount);
-	// 	contestants[_contestantId].voteCount++;
-	// }
+	// vote
+	function vote(uint _contestantId) public {
+		require(_contestantId > 0 && _contestantId<=contestantsCount);
+		require(voters[msg.sender].isRegistered);
+		require(!voters[msg.sender].hasVoted);
+
+		contestants[_contestantId].voteCount++;
+		voters[msg.sender].hasVoted=true;
+		voters[msg.sender].vote=_contestantId;
+	}
 } 	
 

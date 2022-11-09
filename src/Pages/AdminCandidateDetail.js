@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react"
 import AdminSidebar from '../components/AdminSidebar'
-import CandidatesTable from '../components/CandidatesTable'
-import Contest from '../contracts/Contest.json'
-import Web3 from 'web3';
+import loadWeb3 from "../context/Ethereum"
 
 const AdminCandidateDetail = () => {
 
@@ -10,13 +8,7 @@ const AdminCandidateDetail = () => {
 
   useEffect(() => {
     (async () => {
-      const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-      const netID =5777;
-      const deployedNetwork = Contest.networks[netID]
-      const contest = new web3.eth.Contract(
-        Contest.abi,
-        deployedNetwork.address
-      )
+      const contest = await loadWeb3()
       const candidateCount = await contest.methods.contestantsCount().call()
       for (var i = 1; i <= candidateCount; i++) {
         const candidate = await contest.methods.contestants(i).call()

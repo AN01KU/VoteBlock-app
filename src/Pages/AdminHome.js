@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import AdminSidebar from "../components/AdminSidebar"
-import Contest from '../contracts/Contest.json'
-import Web3 from 'web3';
+import loadWeb3 from "../context/Ethereum"
 
 const AdminHome = ({ account }) => {
     const nameRef = useRef()
@@ -9,6 +8,7 @@ const AdminHome = ({ account }) => {
     const ageRef = useRef()
     const qualificationRef = useRef()
     const [sucessfullyAdded, setSucessfullyAdded] = useState(false)
+    const formRef = useRef()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,17 +17,12 @@ const AdminHome = ({ account }) => {
         const age = ageRef.current.value
         const qualification = qualificationRef.current.value
 
-        const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-        const netID = 5777;
-        const deployedNetwork =  Contest.networks[netID]
+        const contest = await loadWeb3()
 
-        const contest = new web3.eth.Contract(
-            Contest.abi,
-            deployedNetwork.address
-        )
-        
-        await contest.methods.addCandidate(name, party, age, qualification).send({from: account})
-        
+        await contest.methods.addCandidate(name, party, age, qualification).send({ from: account })
+        setSucessfullyAdded(true)
+
+        formRef.current.reset()
     }
 
     return (
@@ -43,7 +38,7 @@ const AdminHome = ({ account }) => {
                                 </div>
                                 <br />
                                 <div className="card-body">
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit} ref={formRef}>
                                         <div className="row mb-4">
                                             <div className="col">
                                                 <div className="form-outline">
@@ -76,6 +71,11 @@ const AdminHome = ({ account }) => {
                                     </form>
                                 </div>
                             </div>
+                            {sucessfullyAdded && (
+                                <div><span>
+                                    <b> Candidate </b> added Successfully....!
+                                </span></div>
+                            )}
                         </div>
                     </div>
                 </div>

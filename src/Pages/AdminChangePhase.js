@@ -3,10 +3,8 @@ import AdminSidebar from "../components/AdminSidebar"
 // TODO:
 // 1.functionality of changephase:
 //   change it so that in voter side , they can vote 
-//   implement in blockchain
 
 const AdminChangePhase = () => {
-  // App.changeState()
   return (
     <div className="wrapper ">
         <AdminSidebar/>

@@ -35,7 +35,7 @@ export const Login = () => {
     <div className="container">
       <div className="forms-container">
         <div className="signin-signup">
-          {error && <Alert variant="danger">{error}</Alert>}  
+          {error && <Alert variant="danger">{error}</Alert>}
           <form onSubmit={handleSubmit}>
             <h2 className="title">Sign in</h2>
             <FormInput
@@ -44,19 +44,19 @@ export const Login = () => {
               name="email_address"
               refer={emailRef}
             />
-            <FormInput 
-              type="password" 
-              placeholder="Password" 
-              name="password" 
+            <FormInput
+              type="password"
+              placeholder="Password"
+              name="password"
               refer={passwordRef}
             />
 
-            <input 
-              type="submit" 
-              value="Login" 
+            <input
+              type="submit"
+              value="Login"
               className="btn solid"
               disabled={loading}
-              />
+            />
           </form>
         </div>
       </div>

@@ -1,34 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar';
-import Contest from '../contracts/Contest.json'
-import Web3 from 'web3';
 import { useNavigate } from 'react-router-dom';
-
+import loadWeb3 from '../context/Ethereum';
 
 
 // TODO:
 // 1.check for current phase if 'final stage' :
-//     enable voter to vote
+//     enable voter to vote using candidateData to display
 
-const Dashboard = () => {
+const Dashboard = ({ account }) => {
   const [candidateData, setCandidateData] = useState([])
   const navigate = useNavigate()
-
+  const candidateIdRef = useRef()
+  const formRef = useRef()
   useEffect(() => {
     if (localStorage.getItem("currentUserEmail") === '') {
       alert('No user found')
       navigate('/login')
     }
 
-
     (async () => {
-      const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-      const netID = await web3.eth.net.getId();
-      const deployedNetwork = Contest.networks[netID]
-      const contest = new web3.eth.Contract(
-        Contest.abi,
-        deployedNetwork.address
-      )
+      const contest = await loadWeb3()
       const candidateCount = await contest.methods.contestantsCount().call()
       for (var i = 1; i <= candidateCount; i++) {
         const candidate = await contest.methods.contestants(i).call()
@@ -46,9 +38,12 @@ const Dashboard = () => {
 
   }, [])
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const contest = await loadWeb3()
+    await contest.methods.vote(candidateIdRef.current.value).send({ from: account })
+
+    formRef.current.reset()
   }
 
   return (
@@ -60,21 +55,10 @@ const Dashboard = () => {
             <div id="currentPhase">
             </div>
             <div>
-              {candidateData.map((candidate, idx) => (
-                <div key={idx}>
-                  <p>{candidate.id}</p>
-                  <p>{candidate.name}</p>
-                  <p>{candidate.age}</p>
-                  <p>{candidate.party}</p>
-                  <p>{candidate.qualification}</p>
-                  <p>{candidate.voteCount}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} ref={formRef}>
                 <div className="form-group">
-                  <label htmlFor="contestantSelect">Select Contestant : </label>
+                  {/* <label htmlFor="contestantSelect">Select Contestant : </label> */}
+                  Enter Candidate ID<input ref={candidateIdRef} />
                   <button type="submit" className="btn btn-info">Cast your vote</button>
                 </div>
               </form>

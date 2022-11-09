@@ -3,12 +3,6 @@ import Sidebar from '../components/Sidebar';
 import { getDatabase, ref, child, push, update, get, onValue } from "firebase/database";
 import { useNavigate } from 'react-router-dom';
 
-// TODO:
-// 1.on register check if in db aadhar exists
-//   if yes check if linked email same as curent user email
-//     if yes do email verification using firebase auth 
-//       update isVerified to pending 
-
 export const Form = () => {
   const db = getDatabase();
   const aadharnoRef = useRef()
@@ -23,8 +17,6 @@ export const Form = () => {
       navigate('/login')
     }
   }, [])
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -43,6 +35,7 @@ export const Form = () => {
         }
         if (found === 1) {
           setIsRegistered(true)
+          formRef.current.reset()
         }
       }
     })
