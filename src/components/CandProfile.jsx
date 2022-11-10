@@ -27,17 +27,15 @@ const candProfile = ({id, name, age, qualification, party, votes, account }) => 
 		(async () => {
 			const contest = await loadWeb3()
      var hasVoted =    await contest.methods.voterInfo(account).call();
+	 console.log("UseEffect")
+
 	 console.log(hasVoted)
 	 setvoted(hasVoted)
-	 const candidateCount = await contest.methods.contestantsCount().call()
-   		if (candidateCount > 0 ) {
-			   setValid("You have already voted")
-
-  			 }
-			   else setValid("No candidate to vote yet")
+	
+ setValid("Already Voted")
      
 
-    })
+    })()
 
 	}, [] )
   return ( 
@@ -48,11 +46,8 @@ const candProfile = ({id, name, age, qualification, party, votes, account }) => 
 
   <div className="center">
 
-  {!voted  ? (
+  {voted  ? (
 	<h2 style={{ margin: '4rem 15rem' }}>{valid}</h2>
-
-
-
             ) : (
 				<main>
                 <div className="profile">

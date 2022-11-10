@@ -65,9 +65,9 @@ export const Login = () => {
         <div className="panel left-panel">
           <div className="content">
             <h3>New here ?</h3>
-            <p>If you haven't signed up , What are you waiting for ?</p>
+            <p>If you haven't made an account already, please Sign up!</p>
             <Link to="/register">
-              <button className="btn transparent" id="sign-up-btn">
+              <button className="btn" id="sign-up-btn">
                 Sign up
               </button>
             </Link>
