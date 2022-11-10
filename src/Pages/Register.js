@@ -80,9 +80,9 @@ const Register = () => {
         <div className="panel left-panel">
           <div className="content">
             <h3>One of us?</h3>
-            <p>If you have already signed up , that's great !! Please LOGIN</p>
+            <p>If you an account here, Please login!</p>
             <Link to="/login">
-              <button className="btn transparent" id="sign-up-btn">
+              <button className="btn" id="sign-up-btn">
                 Login
               </button>
             </Link>

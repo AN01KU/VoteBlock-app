@@ -14,7 +14,7 @@
       "https://assets.website-files.com/626a7239089e3c2ed7e9ea62/6320eea447b8a0bcbe2f67df_bcthumb.png");
                   background-repeat: repeat;
                   background-size: 200px 150px;
-                  text-align: center;
+                
    
                   
     
@@ -29,13 +29,15 @@
     
     
     display: flex;
-    color:#B7C4CF;
+    color:white;
+    font-weight: 900;
+    font-size: 3.5rem;
   }
   
   .navtitle{
     font-weight: 600;
-    -webkit-text-decoration: #4C6793 double underline;
-    text-decoration: #4C6793 double underline;
+    -webkit-text-decoration: white double underline;
+    text-decoration: white double underline;
   }
   
   
@@ -160,3 +162,5 @@
     font-weight: 500;
     
   }
+
+  
