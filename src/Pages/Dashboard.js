@@ -13,8 +13,9 @@ import '../css/profile.css';
 const Dashboard = ({ account }) => {
   const [candidateData, setCandidateData] = useState([])
   const navigate = useNavigate()
-  const candidateIdRef = useRef()
-  const formRef = useRef()
+  const [currentPhase, setCurrentPhase] = useState('')
+  const [hasVoted, setHasVoted] = useState(false)
+
   useEffect(() => {
     if (localStorage.getItem("currentUserEmail") === '') {
       alert('No user found')
@@ -35,18 +36,14 @@ const Dashboard = ({ account }) => {
           voteCount: candidate.voteCount,
         }])
       }
-
+      const phase = await contest.methods.currentPhase().call()
+      setCurrentPhase(phase)
+      const currentVoter = await contest.methods.voters(account).call()
+      setHasVoted(currentVoter.hasVoted)
     })()
 
   }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const contest = await loadWeb3()
-    await contest.methods.vote(candidateIdRef.current.value).send({ from: account })
-
-    formRef.current.reset()
-  }
 
   return (
     <div className="wrapper ">
@@ -54,30 +51,39 @@ const Dashboard = ({ account }) => {
       <div className="main-panel">
         <div className="content" style={{ marginTop: "20px !important" }}>
           <div className="container" style={{ width: "850px" }}>
-          <div className="minhold">
-          
-
-             {candidateData.map((candidate, idx) => (
-               <div className='containerSide' key={idx}>
-                   <CandProfile
-                    key = {idx}
-                    id= {candidate.id}
-                    name = {candidate.name}
-                    age = {candidate.age}
-                    party = {candidate.party}
-                    qualification= {candidate.qualification} 
-                    votes = {candidate.voteCount}
-                    account = {account} />
-                   </div>
-              ))}
-              
+            {currentPhase === 'registration' && (
+              <h3 style={{ color: 'white' }}>Registration is still going!!!</h3>
+            )}
+            {currentPhase === 'voting' && (
+              <div className="card">
+            <div className="card-header card-header-info">
+              <h4 className="card-title">Vote</h4>
+            </div>
+              <div className="minhold">
+                {candidateData.map((candidate, idx) => (
+                  <div className='containerSide' key={idx}>
+                    <CandProfile
+                      key={idx}
+                      id={candidate.id}
+                      name={candidate.name}
+                      age={candidate.age}
+                      party={candidate.party}
+                      qualification={candidate.qualification}
+                      votes={candidate.voteCount}
+                      account={account} />
+                  </div>
+                ))}
               </div>
-
+              </div>
+            )}
+            {currentPhase === 'results' && (
+              <h3 style={{ color: 'white' }}>Results are out!!</h3>
+            )}
           </div>
         </div>
       </div>
     </div>
-   
+
   )
 }
 

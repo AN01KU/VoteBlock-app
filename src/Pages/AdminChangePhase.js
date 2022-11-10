@@ -18,7 +18,6 @@ const AdminChangePhase = ({ account }) => {
   
   }, [])
 
-  console.log(currentPhase);
 
   const handleSubmit = async()=>{
     const contest = await loadWeb3()

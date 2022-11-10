@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
 import { useEffect, useState } from "react"
-import Contest from '../contracts/Contest.json'
-import Web3 from 'web3'
 import loadWeb3 from "../context/Ethereum"
 
 // TODO:
@@ -12,7 +10,7 @@ import loadWeb3 from "../context/Ethereum"
 const Result = ({ account }) => {
     const navigate = useNavigate()
     const [candidateData, setCandidateData] = useState([])
-
+    const [currentPhase, setCurrentPhase] = useState('')
 
     useEffect(() => {
         if (localStorage.getItem("currentUserEmail") === '') {
@@ -21,7 +19,7 @@ const Result = ({ account }) => {
         }
 
         (async () => {
-           const contest = await loadWeb3();
+            const contest = await loadWeb3();
             const candidateCount = await contest.methods.contestantsCount().call()
             for (var i = 1; i <= candidateCount; i++) {
                 const candidate = await contest.methods.contestants(i).call()
@@ -34,6 +32,8 @@ const Result = ({ account }) => {
                     voteCount: candidate.voteCount,
                 }])
             }
+            const phase = await contest.methods.currentPhase().call()
+            setCurrentPhase(phase)
 
         })()
 
@@ -43,45 +43,51 @@ const Result = ({ account }) => {
         <div className="wrapper ">
             <Sidebar />
             <div className="main-panel">
-
                 <div className="content">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="card">
-                                    <div className="card-header card-header-info">
-                                        <h4 className="card-title">Results</h4>
-                                    </div>
-                                    <div className="card-body">
-
-                                        <div id="renderTable">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Age</th>
-                                                        <th scope="col">Party</th>
-                                                        <th scope="col">Qualification</th>
-                                                        <th scope="col">Votes</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="Results">
-                                                    {candidateData.map((candidate, idx) => (
-                                                        <tr key={idx}>
-                                                            <td>{candidate.id}</td>
-                                                            <td>{candidate.name}</td>
-                                                            <td>{candidate.age}</td>
-                                                            <td>{candidate.party}</td>
-                                                            <td>{candidate.qualification}</td>
-                                                            <td>{candidate.voteCount}</td>
+                                {currentPhase === 'registration' && (
+                                    <h3 style={{ color: 'white' }}>Registration is still going</h3>
+                                )}
+                                {currentPhase === 'voting' && (
+                                    <h3 style={{ color: 'white' }}>Voting is still going</h3>
+                                )}
+                                {currentPhase === 'results' && (
+                                    <div className="card">
+                                        <div className="card-header card-header-info">
+                                            <h4 className="card-title">Results</h4>
+                                        </div>
+                                        <div className="card-body">
+                                            <div id="renderTable">
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Age</th>
+                                                            <th scope="col">Party</th>
+                                                            <th scope="col">Qualification</th>
+                                                            <th scope="col">Votes</th>
                                                         </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody id="Results">
+                                                        {candidateData.map((candidate, idx) => (
+                                                            <tr key={idx}>
+                                                                <td>{candidate.id}</td>
+                                                                <td>{candidate.name}</td>
+                                                                <td>{candidate.age}</td>
+                                                                <td>{candidate.party}</td>
+                                                                <td>{candidate.qualification}</td>
+                                                                <td>{candidate.voteCount}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         </div>
                     </div>
