@@ -26,7 +26,6 @@ contract Contest{
 	
 	// *************************************************************
 
-
 	event ContestantAdded (
 		uint id,
 		string name,
@@ -78,9 +77,5 @@ contract Contest{
 	function changePhase(string memory phase) public {
 		currentPhase = phase;
 	}
-	function voterInfo(address addr) public returns(bool) {
-        bool hasVotedCheck =  voters[addr].hasVoted;
-		return hasVotedCheck;
-    }
 } 	
 

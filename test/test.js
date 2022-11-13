@@ -1,3 +1,4 @@
+
 const Contest = artifacts.require('./Contest.sol')
 
 require('chai')
@@ -20,10 +21,6 @@ contract('Contest', ([deployer, author, tipper]) => {
             assert.notEqual(address, undefined)
         })
 
-        it('has a name', async () => {
-            const name = await contest.name()
-            assert.equal(name, 'Ankush')
-        })
     })
 
     describe('contestants', async()=>{
@@ -59,3 +56,4 @@ contract('Contest', ([deployer, author, tipper]) => {
         })
     })
 })
+
